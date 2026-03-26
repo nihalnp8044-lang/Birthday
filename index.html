@@ -590,9 +590,44 @@
     @keyframes fallDown {
       to { top: 320px; }
     }
+    .music-toggle {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      z-index: 1000;
+      background: rgba(255, 255, 255, 0.7);
+      backdrop-filter: blur(5px);
+      border: 1px solid var(--rose);
+      color: var(--deep);
+      padding: 8px 16px;
+      border-radius: 30px;
+      font-family: 'Nunito', sans-serif;
+      font-weight: 700;
+      font-size: 0.9rem;
+      cursor: pointer;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      transition: all 0.3s ease;
+      display: none; /* hidden until started */
+    }
+    .music-toggle:hover {
+      background: var(--rose);
+      color: #fff;
+    }
+    .night-mode .music-toggle {
+      background: rgba(0,0,0,0.4);
+      color: #bb86fc;
+      border-color: #bb86fc;
+    }
   </style>
 </head>
 <body>
+
+<!-- ════════ BACKGROUND MUSIC ════════ -->
+<!-- You can replace this URL below with your own direct mp3 link -->
+<audio id="bg-music" loop>
+  <source src="https://assets.mixkit.co/music/preview/mixkit-beautiful-dream-493.mp3" type="audio/mpeg">
+</audio>
+<button id="btn-music" class="music-toggle" title="Play/Pause Music">🎵 Music: ON</button>
 
 <!-- Floating hearts background -->
 <div id="hearts-bg"></div>
@@ -848,8 +883,44 @@ btnLike.addEventListener('mousemove', () => { if (isRunaway) placeBtn(); });
 btnLike.addEventListener('touchstart', (e) => { e.preventDefault(); activateRunaway(); if (isRunaway) placeBtn(); }, { passive: false });
 btnLike.addEventListener('click', () => { if (isRunaway) placeBtn(); }); // just in case
 
+// ─── Background Music Logic ──────────────────────────────────────────────
+const bgMusic = document.getElementById('bg-music');
+const btnMusic = document.getElementById('btn-music');
+let musicStarted = false;
+
+function fadeMusicIn(audioElement, targetVolume = 0.4, duration = 3000) {
+  audioElement.volume = 0;
+  audioElement.play().catch(e => console.log("Audio play blocked by browser:", e));
+  
+  const step = targetVolume / (duration / 50);
+  const fadeInterval = setInterval(() => {
+    if (audioElement.volume + step < targetVolume) {
+      audioElement.volume += step;
+    } else {
+      audioElement.volume = targetVolume;
+      clearInterval(fadeInterval);
+    }
+  }, 50);
+}
+
+btnMusic.addEventListener('click', () => {
+  if (bgMusic.paused) {
+    bgMusic.play();
+    btnMusic.textContent = '🎵 Music: ON';
+  } else {
+    bgMusic.pause();
+    btnMusic.textContent = '🎵 Mute';
+  }
+});
+
 // ─── I Love It ─────────────────────────────────────────────────────────────
 btnLove.addEventListener('click', () => {
+  if (!musicStarted) {
+    musicStarted = true;
+    fadeMusicIn(bgMusic, 0.4, 3000); // Fades to 0.4 volume over 3 seconds
+    btnMusic.style.display = 'block';
+  }
+
   const s1 = document.getElementById('screen1');
   const s2 = document.getElementById('screen2');
   btnLike.style.display = 'none';
