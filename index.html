@@ -460,6 +460,24 @@
     .main-polaroid .polaroid-caption {
       font-size: 1.8rem;
     }
+    .last-polaroid .polaroid-caption {
+      font-size: 1.8rem;
+    }
+
+    /* Target mobile portrait specifically for full image display */
+    @media (max-width: 600px) {
+      .main-polaroid img,
+      .last-polaroid img {
+        height: auto;
+        object-fit: contain;
+        max-height: 500px;
+      }
+      .main-polaroid, 
+      .last-polaroid {
+        grid-column: 1 / -1;
+      }
+    }
+
     .final-quotes {
       margin-top: 2rem;
       font-family: 'Dancing Script', cursive;
@@ -633,9 +651,9 @@
         <img src="images/media__1774556328635.jpg" alt="Cute smile" />
         <div class="polaroid-caption">That beautiful smile ✨</div>
       </div>
-      <div class="collage-item">
+      <div class="collage-item last-polaroid">
         <img src="images/media__1774556347168.jpg" alt="Favorite adventure" />
-        <div class="polaroid-caption">My favorite adventure 🌍</div>
+        <div class="polaroid-caption">Forever yours 💖</div>
       </div>
     </div>
     <div class="final-quotes">
