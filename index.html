@@ -64,6 +64,9 @@
     .screen.hidden {
       display: none;
     }
+    .hidden {
+      display: none !important;
+    }
 
     /* ─── Screen 1 ─── */
     #screen1 .card {
@@ -773,10 +776,10 @@
     </div>
     <p id="theme-message" class="theme-msg" style="color: var(--deep);">Every day with you feels like sunshine ☀️</p>
     
-    <div id="game-intro">
+    <div id="game-intro" style="text-align: center;">
       <h3 class="game-title">Catch the Hearts 💕</h3>
       <p id="game-score">Caught: 0 / 10</p>
-      <button id="btn-start-game" class="submit-btn">Start Game</button>
+      <button id="btn-start-game" class="submit-btn" style="margin: 1rem auto 0 auto; display: block;">Start Game</button>
     </div>
     
     <div id="game-container"></div>
