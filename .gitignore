@@ -1,0 +1,30 @@
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editor & IDE
+.vscode/
+.idea/
+*.suo
+*.user
+*.swp
+*.swo
+*~
+
+# Logs
+*.log
+npm-debug.log*
+
+# Node (if added later)
+node_modules/
+dist/
+.env
+.env.local
+
+# Build output
+/build/
+/out/
+
+# Gemini / AI tooling
+.gemini/
