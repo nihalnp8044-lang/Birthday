@@ -342,6 +342,106 @@
       pointer-events: none;
       z-index: 99;
     }
+
+    /* ─── Screen 3 – Secret Unlock ─── */
+    .input-box {
+      margin-top: 1.5rem;
+      padding: 0.8rem 1.2rem;
+      border: 2px solid #f48fb1;
+      border-radius: 12px;
+      font-size: 1.1rem;
+      font-family: 'Nunito', sans-serif;
+      outline: none;
+      width: 100%;
+      max-width: 200px;
+      text-align: center;
+      background: rgba(255, 255, 255, 0.8);
+      color: var(--deep);
+      transition: box-shadow 0.3s, border-color 0.3s;
+    }
+    .input-box:focus {
+      border-color: var(--rose);
+      box-shadow: 0 0 10px rgba(233, 30, 99, 0.3);
+    }
+    .submit-btn {
+      margin-top: 1rem;
+      background: linear-gradient(135deg, var(--rose), var(--deep));
+      color: #fff;
+      border: none;
+      border-radius: 50px;
+      padding: 0.7rem 2rem;
+      font-size: 1.1rem;
+      font-family: 'Nunito', sans-serif;
+      font-weight: 700;
+      cursor: pointer;
+      transition: transform 0.15s, box-shadow 0.15s;
+      width: 100%;
+      max-width: 200px;
+    }
+    .submit-btn:hover {
+      transform: scale(1.05);
+      box-shadow: 0 6px 15px rgba(233, 30, 99, 0.4);
+    }
+    .error-msg {
+      color: #e91e63;
+      margin-top: 0.8rem;
+      font-size: 0.95rem;
+      font-weight: 600;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    .error-msg.show {
+      opacity: 1;
+    }
+    .shake {
+      animation: shake 0.4s cubic-bezier(.36,.07,.19,.97) both;
+    }
+    @keyframes shake {
+      10%, 90% { transform: translate3d(-3px, 0, 0); }
+      20%, 80% { transform: translate3d(4px, 0, 0); }
+      30%, 50%, 70% { transform: translate3d(-6px, 0, 0); }
+      40%, 60% { transform: translate3d(6px, 0, 0); }
+    }
+
+    /* ─── Screen 4 – Final Surprise ─── */
+    #screen4 .card {
+      max-width: 700px;
+      padding: 3rem 2rem;
+    }
+    .collage-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 15px;
+      margin-top: 1.5rem;
+    }
+    .collage-item {
+      position: relative;
+      border-radius: 12px;
+      overflow: hidden;
+      aspect-ratio: 1;
+      box-shadow: 0 8px 20px rgba(233,30,99,0.2);
+    }
+    .collage-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+    .collage-item:hover img {
+      transform: scale(1.1);
+    }
+    .final-quotes {
+      margin-top: 2rem;
+      font-family: 'Dancing Script', cursive;
+      font-size: 1.5rem;
+      color: var(--deep);
+      line-height: 1.8;
+      animation: slideUpFade 1s ease 0.5s both;
+    }
+    @keyframes slideUpFade {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
   </style>
 </head>
 <body>
@@ -471,6 +571,44 @@
   </div>
 </div>
 
+<!-- ════════ SCREEN 3 (SECRET UNLOCK) ════════ -->
+<section class="screen hidden" id="screen3">
+  <div class="card" id="unlock-card">
+    <h2 class="main-heading" style="font-size: 2.2rem;">Enter your favorite number to unlock 💖</h2>
+    <input type="number" id="secret-input" class="input-box" placeholder="e.g. 7" />
+    <br>
+    <button id="btn-unlock" class="submit-btn">Unlock 🌹</button>
+    <p id="unlock-error" class="error-msg">Hmm… try again my love 😘</p>
+  </div>
+</section>
+
+<!-- ════════ SCREEN 4 (FINAL SURPRISE) ════════ -->
+<section class="screen hidden" id="screen4">
+  <div class="card">
+    <h2 class="main-heading" style="font-size: 2.8rem;">My Everything ❤️</h2>
+    <div class="collage-grid">
+      <!-- PLACEHOLDERS FOR YOUR PHOTOS -->
+      <div class="collage-item">
+        <img src="YOUR_PHOTO_1.jpg" alt="Our memory 1" onerror="this.src='https://via.placeholder.com/300/fce4ec/e91e63?text=Photo+1'" />
+      </div>
+      <div class="collage-item">
+        <img src="YOUR_PHOTO_2.jpg" alt="Our memory 2" onerror="this.src='https://via.placeholder.com/300/f8bbd0/e91e63?text=Photo+2'" />
+      </div>
+      <div class="collage-item">
+        <img src="YOUR_PHOTO_3.jpg" alt="Our memory 3" onerror="this.src='https://via.placeholder.com/300/f48fb1/e91e63?text=Photo+3'" />
+      </div>
+      <div class="collage-item">
+        <img src="YOUR_PHOTO_4.jpg" alt="Our memory 4" onerror="this.src='https://via.placeholder.com/300/f06292/fff?text=Photo+4'" />
+      </div>
+    </div>
+    <div class="final-quotes">
+      <p>Every moment with you is magic ✨</p>
+      <p>You are my favorite person ❤️</p>
+      <p>Forever isn't enough with you 💕</p>
+    </div>
+  </div>
+</section>
+
 <script>
 // ─── Floating hearts background ───────────────────────────────────────────
 const heartsBg = document.getElementById('hearts-bg');
@@ -581,6 +719,57 @@ function showPopup() {
 
 popupClose.addEventListener('click', () => {
   overlay.classList.remove('show');
+  
+  // Transition from Screen 2 to Screen 3
+  const s2 = document.getElementById('screen2');
+  const s3 = document.getElementById('screen3');
+  
+  s2.style.opacity = '0';
+  s2.style.transform = 'scale(0.9)';
+  setTimeout(() => {
+    s2.classList.add('hidden');
+    s3.classList.remove('hidden');
+    // small delay for display block to take effect before animating
+    requestAnimationFrame(() => {
+      s3.style.opacity = '1';
+      s3.style.transform = 'translateY(0)';
+    });
+  }, 500);
+});
+
+// ─── Secret Unlock Logic ──────────────────────────────────────────────────
+const btnUnlock = document.getElementById('btn-unlock');
+const secretInput = document.getElementById('secret-input');
+const unlockError = document.getElementById('unlock-error');
+const unlockCard = document.getElementById('unlock-card');
+
+btnUnlock.addEventListener('click', () => {
+  const val = secretInput.value.trim();
+  if (val === '7') {
+    unlockError.classList.remove('show');
+    // Transition to Screen 4
+    const s3 = document.getElementById('screen3');
+    const s4 = document.getElementById('screen4');
+    
+    s3.style.opacity = '0';
+    s3.style.transform = 'scale(0.9)';
+    setTimeout(() => {
+      s3.classList.add('hidden');
+      s4.classList.remove('hidden');
+      requestAnimationFrame(() => {
+        s4.style.opacity = '1';
+        s4.style.transform = 'translateY(0)';
+      });
+      // Start confetti again for the final surprise
+      startConfetti();
+    }, 500);
+  } else {
+    unlockError.classList.add('show');
+    unlockCard.classList.remove('shake');
+    // Trigger reflow to restart animation
+    void unlockCard.offsetWidth;
+    unlockCard.classList.add('shake');
+  }
 });
 
 // ─── Confetti ──────────────────────────────────────────────────────────────
