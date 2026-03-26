@@ -392,63 +392,6 @@
           <div class="wick"></div>
           <div class="candle-body"></div>
         </div>
-
-        <div class="candle-wrap candle-2" data-id="1">
-          <div class="flame" id="flame-1">
-            <svg viewBox="0 0 20 34" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <ellipse cx="10" cy="28" rx="7" ry="6" fill="#FF8C00" opacity="0.4"/>
-              <path d="M10 2 C4 10, 2 16, 6 22 C8 25, 12 25, 14 22 C18 16, 16 10, 10 2Z" fill="url(#fg1)"/>
-              <path d="M10 10 C7 15, 7 20, 10 22 C13 20, 13 15, 10 10Z" fill="#FFFF88" opacity="0.9"/>
-              <defs>
-                <linearGradient id="fg1" x1="10" y1="2" x2="10" y2="25" gradientUnits="userSpaceOnUse">
-                  <stop offset="0%" stop-color="#FFFF00"/>
-                  <stop offset="50%" stop-color="#FF8C00"/>
-                  <stop offset="100%" stop-color="#FF4500"/>
-                </linearGradient>
-              </defs>
-            </svg>
-          </div>
-          <div class="wick"></div>
-          <div class="candle-body"></div>
-        </div>
-
-        <div class="candle-wrap candle-3" data-id="2">
-          <div class="flame" id="flame-2">
-            <svg viewBox="0 0 20 34" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <ellipse cx="10" cy="28" rx="7" ry="6" fill="#FF8C00" opacity="0.4"/>
-              <path d="M10 2 C4 10, 2 16, 6 22 C8 25, 12 25, 14 22 C18 16, 16 10, 10 2Z" fill="url(#fg2)"/>
-              <path d="M10 10 C7 15, 7 20, 10 22 C13 20, 13 15, 10 10Z" fill="#FFFF88" opacity="0.9"/>
-              <defs>
-                <linearGradient id="fg2" x1="10" y1="2" x2="10" y2="25" gradientUnits="userSpaceOnUse">
-                  <stop offset="0%" stop-color="#FFFF00"/>
-                  <stop offset="50%" stop-color="#FF8C00"/>
-                  <stop offset="100%" stop-color="#FF4500"/>
-                </linearGradient>
-              </defs>
-            </svg>
-          </div>
-          <div class="wick"></div>
-          <div class="candle-body"></div>
-        </div>
-
-        <div class="candle-wrap candle-4" data-id="3">
-          <div class="flame" id="flame-3">
-            <svg viewBox="0 0 20 34" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <ellipse cx="10" cy="28" rx="7" ry="6" fill="#FF8C00" opacity="0.4"/>
-              <path d="M10 2 C4 10, 2 16, 6 22 C8 25, 12 25, 14 22 C18 16, 16 10, 10 2Z" fill="url(#fg3)"/>
-              <path d="M10 10 C7 15, 7 20, 10 22 C13 20, 13 15, 10 10Z" fill="#FFFF88" opacity="0.9"/>
-              <defs>
-                <linearGradient id="fg3" x1="10" y1="2" x2="10" y2="25" gradientUnits="userSpaceOnUse">
-                  <stop offset="0%" stop-color="#FFFF00"/>
-                  <stop offset="50%" stop-color="#FF8C00"/>
-                  <stop offset="100%" stop-color="#FF4500"/>
-                </linearGradient>
-              </defs>
-            </svg>
-          </div>
-          <div class="wick"></div>
-          <div class="candle-body"></div>
-        </div>
       </div><!-- /candles-row -->
 
       <!-- Cake SVG -->
@@ -610,7 +553,7 @@ btnLove.addEventListener('click', () => {
 });
 
 // ─── Candle click logic ─────────────────────────────────────────────────────
-let litCount = 4;
+let litCount = 1;
 
 document.querySelectorAll('.candle-wrap').forEach(candle => {
   candle.addEventListener('click', () => {
