@@ -21,9 +21,11 @@
     }
 
     html, body {
-      height: 100%;
+      min-height: 100vh;
       font-family: 'Nunito', sans-serif;
       background: linear-gradient(135deg, #fce4ec 0%, #f8bbd0 50%, #fce4ec 100%);
+      background-attachment: fixed;
+      background-size: cover;
       overflow-x: hidden;
     }
 
@@ -138,9 +140,10 @@
       background: linear-gradient(135deg, #f8bbd0, #f48fb1);
       color: var(--deep);
       box-shadow: 0 4px 16px rgba(244,143,177,0.35);
-      position: fixed; /* allows free positioning */
+    }
+    #btn-like.runaway {
+      position: fixed;
       z-index: 999;
-      /* initial position set by JS */
     }
 
     /* ─── Screen 2 – Cake ─── */
@@ -356,12 +359,10 @@
     <p class="subtitle">Wishing you a day as wonderful as you are 🌹</p>
     <div class="btn-group">
       <button class="btn" id="btn-love">I Love It ❤️</button>
+      <button class="btn" id="btn-like">I Like It 🙂</button>
     </div>
   </div>
 </section>
-
-<!-- "I Like It" button rendered outside card so it can float freely -->
-<button class="btn" id="btn-like">I Like It 🙂</button>
 
 <!-- ════════ SCREEN 2 ════════ -->
 <section class="screen hidden" id="screen2">
@@ -550,6 +551,7 @@ for (let i = 0; i < 8; i++) spawnHeart();
 // ─── I Like It button – runaway logic ─────────────────────────────────────
 const btnLike = document.getElementById('btn-like');
 const btnLove = document.getElementById('btn-love');
+let isRunaway = false;
 
 function randomPos() {
   const bw = btnLike.offsetWidth  || 140;
@@ -566,17 +568,23 @@ function placeBtn() {
   btnLike.style.transition = 'left 0.25s ease, top 0.25s ease';
 }
 
-// Initial placement
-window.addEventListener('load', () => {
-  // Position it below the love button initially
-  const r = btnLove.getBoundingClientRect();
-  btnLike.style.left = (r.left + r.width + 20) + 'px';
-  btnLike.style.top  = r.top + 'px';
-});
+function activateRunaway() {
+  if (isRunaway) return;
+  isRunaway = true;
+  // Capture current screen position before switching to fixed
+  const rect = btnLike.getBoundingClientRect();
+  btnLike.classList.add('runaway');
+  btnLike.style.left = rect.left + 'px';
+  btnLike.style.top  = rect.top  + 'px';
+  btnLike.style.transition = 'none';
+  // Short delay so the snap is invisible, then start running away
+  setTimeout(placeBtn, 50);
+}
 
-btnLike.addEventListener('mousemove', placeBtn);
-btnLike.addEventListener('touchstart', (e) => { e.preventDefault(); placeBtn(); }, { passive: false });
-btnLike.addEventListener('click', placeBtn); // just in case
+btnLike.addEventListener('mouseenter', activateRunaway);
+btnLike.addEventListener('mousemove', () => { if (isRunaway) placeBtn(); });
+btnLike.addEventListener('touchstart', (e) => { e.preventDefault(); activateRunaway(); if (isRunaway) placeBtn(); }, { passive: false });
+btnLike.addEventListener('click', () => { if (isRunaway) placeBtn(); }); // just in case
 
 // ─── I Love It ─────────────────────────────────────────────────────────────
 btnLove.addEventListener('click', () => {
