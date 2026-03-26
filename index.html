@@ -624,8 +624,8 @@
 
 <!-- ════════ BACKGROUND MUSIC ════════ -->
 <!-- You can replace this URL below with your own direct mp3 link -->
-<audio id="bg-music" loop>
-  <source src="https://assets.mixkit.co/music/preview/mixkit-beautiful-dream-493.mp3" type="audio/mpeg">
+<audio id="bg-music" loop crossorigin="anonymous" preload="auto">
+  <source src="https://upload.wikimedia.org/wikipedia/commons/3/3f/Beethoven_-_Piano_Sonata_No._14_in_C-sharp_minor_%22Moonlight%22%2C_1st_movement.ogg" type="audio/ogg">
 </audio>
 <button id="btn-music" class="music-toggle" title="Play/Pause Music">🎵 Music: ON</button>
 
@@ -890,17 +890,26 @@ let musicStarted = false;
 
 function fadeMusicIn(audioElement, targetVolume = 0.4, duration = 3000) {
   audioElement.volume = 0;
-  audioElement.play().catch(e => console.log("Audio play blocked by browser:", e));
   
-  const step = targetVolume / (duration / 50);
-  const fadeInterval = setInterval(() => {
-    if (audioElement.volume + step < targetVolume) {
-      audioElement.volume += step;
-    } else {
-      audioElement.volume = targetVolume;
-      clearInterval(fadeInterval);
-    }
-  }, 50);
+  const playPromise = audioElement.play();
+  
+  if (playPromise !== undefined) {
+    playPromise.then(() => {
+      // Playback successfully started
+      const step = targetVolume / (duration / 50);
+      const fadeInterval = setInterval(() => {
+        if (audioElement.volume + step < targetVolume) {
+          audioElement.volume += step;
+        } else {
+          audioElement.volume = targetVolume;
+          clearInterval(fadeInterval);
+        }
+      }, 50);
+    }).catch(e => {
+      console.log("Audio play blocked by browser:", e);
+      alert("Your browser is blocking the music! Please tap the '🎵 Music: ON' button in the bottom corner to start it.");
+    });
+  }
 }
 
 btnMusic.addEventListener('click', () => {
