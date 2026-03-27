@@ -87,12 +87,12 @@
       position: absolute;
       inset: 0;
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      grid-template-rows: repeat(5, 1fr);
-      gap: 3px;
+      grid-template-columns: repeat(5, 1fr);
+      grid-template-rows: repeat(6, 1fr);
+      gap: 2px;
       z-index: 0;
-      filter: blur(5px);
-      transform: scale(1.04); /* slight zoom to prevent blur edge bleed */
+      filter: blur(2px);
+      transform: scale(1.02); /* slight zoom to prevent blur edge bleed */
     }
     #collage-bg .bg-tile {
       width: 100%;
@@ -107,9 +107,9 @@
       inset: 0;
       background: linear-gradient(
         160deg,
-        rgba(173, 20, 87, 0.62) 0%,
-        rgba(233, 30, 99, 0.50) 40%,
-        rgba(90, 0, 40, 0.70) 100%
+        rgba(140, 10, 60, 0.45) 0%,
+        rgba(200, 20, 80, 0.35) 40%,
+        rgba(60, 0, 25, 0.52) 100%
       );
       z-index: 1;
     }
@@ -203,10 +203,10 @@
     }
 
     /* Responsive: tighter grid on mobile */
-    @media (max-width: 500px) {
+    @media (max-width: 600px) {
       #collage-bg {
         grid-template-columns: repeat(3, 1fr);
-        grid-template-rows: repeat(7, 1fr);
+        grid-template-rows: repeat(10, 1fr);
       }
     }
 
@@ -700,7 +700,7 @@
 <!-- ════════ SCREEN 1 ════════ -->
 <section class="screen" id="screen1">
 
-  <!-- Collage background — 20 small tiles cycling through the 5 photos -->
+  <!-- Collage background — 30 small tiles cycling through the 5 photos -->
   <div id="collage-bg" aria-hidden="true">
     <img class="bg-tile" src="images/media__1774556277343.jpg" alt="" />
     <img class="bg-tile" src="images/media__1774556312159.jpg" alt="" />
@@ -721,6 +721,16 @@
     <img class="bg-tile" src="images/media__1774556312159.jpg" alt="" />
     <img class="bg-tile" src="images/media__1774556277343.jpg" alt="" />
     <img class="bg-tile" src="images/media__1774556347168.jpg" alt="" />
+    <img class="bg-tile" src="images/media__1774556317327.jpg" alt="" />
+    <img class="bg-tile" src="images/media__1774556277343.jpg" alt="" />
+    <img class="bg-tile" src="images/media__1774556347168.jpg" alt="" />
+    <img class="bg-tile" src="images/media__1774556312159.jpg" alt="" />
+    <img class="bg-tile" src="images/media__1774556317327.jpg" alt="" />
+    <img class="bg-tile" src="images/media__1774556328635.jpg" alt="" />
+    <img class="bg-tile" src="images/media__1774556347168.jpg" alt="" />
+    <img class="bg-tile" src="images/media__1774556277343.jpg" alt="" />
+    <img class="bg-tile" src="images/media__1774556312159.jpg" alt="" />
+    <img class="bg-tile" src="images/media__1774556328635.jpg" alt="" />
     <img class="bg-tile" src="images/media__1774556317327.jpg" alt="" />
   </div>
 
