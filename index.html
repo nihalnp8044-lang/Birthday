@@ -680,6 +680,109 @@
       color: #bb86fc;
       border-color: #bb86fc;
     }
+    /* ─── Story Screen ─── */
+    #story-screen {
+      background: linear-gradient(135deg, #fff0f5 0%, #fce4ec 100%);
+      overflow-y: auto;
+      padding: 2rem 1rem;
+    }
+    .story-card {
+      background: rgba(255, 255, 255, 0.82);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-radius: 30px;
+      padding: 2.5rem 1.8rem;
+      max-width: 550px;
+      width: 100%;
+      box-shadow: 0 15px 45px rgba(233, 30, 99, 0.15);
+      border: 1px solid rgba(255, 255, 255, 0.4);
+      text-align: center;
+      position: relative;
+    }
+    .story-title {
+      font-family: 'Dancing Script', cursive;
+      font-size: 2.8rem;
+      color: var(--rose);
+      margin-bottom: 0.2rem;
+    }
+    .story-subtitle {
+      font-size: 1rem;
+      color: #ad1457;
+      margin-bottom: 2rem;
+      font-style: italic;
+    }
+    .story-moments-container {
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+      margin-bottom: 2rem;
+      text-align: left;
+    }
+    .story-moment {
+      background: #fff;
+      padding: 1.2rem;
+      border-radius: 18px;
+      border-left: 4px solid var(--pink);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+      font-size: 1.05rem;
+      line-height: 1.5;
+      color: #444;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.6s ease;
+    }
+    .story-moment.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .story-moment.highlight {
+      border-left: 6px solid var(--gold);
+      background: linear-gradient(to right, #fff9e6, #fff);
+      box-shadow: 0 8px 20px rgba(255, 215, 0, 0.2);
+      transform: scale(1.02);
+    }
+    .highlight-text {
+      color: #9c7c00;
+      font-weight: 700;
+    }
+    .story-moment.ending {
+      border-left-color: var(--rose);
+      background: linear-gradient(to right, #fff0f5, #fff);
+      font-weight: 700;
+      font-size: 1.15rem;
+      text-align: center;
+      color: var(--deep);
+    }
+    #btn-next-moment {
+      background: var(--pink);
+      color: #fff;
+      border: none;
+      padding: 0.6rem 1.4rem;
+      border-radius: 50px;
+      font-weight: 700;
+      cursor: pointer;
+      margin-top: 1rem;
+      transition: transform 0.2s;
+    }
+    #btn-next-moment:hover { transform: scale(1.05); }
+    
+    .night-mode #story-screen {
+      background: linear-gradient(135deg, #1a0a1f 0%, #2d1130 100%);
+    }
+    .night-mode .story-card {
+      background: rgba(255, 255, 255, 0.08);
+      color: #fff;
+      border-color: rgba(255, 255, 255, 0.1);
+    }
+    .night-mode .story-moment {
+      background: rgba(0,0,0,0.3);
+      color: #eee;
+      border-left-color: #bb86fc;
+    }
+    .night-mode .story-moment.highlight {
+      background: rgba(255, 215, 0, 0.1);
+      border-left-color: var(--gold);
+    }
   </style>
 </head>
 <body>
@@ -922,7 +1025,24 @@
     
     <div id="win-message" class="hidden" style="margin-top: 2rem;">
       <h2 class="main-heading" style="line-height:1.4; font-size: 2.2rem;">You found my heart…<br>but you already had it 😉❤️</h2>
+      <button id="btn-show-story" class="submit-btn" style="margin-top: 1.5rem; display: none;">Our Story ❤️</button>
     </div>
+  </div>
+</section>
+
+<!-- ════════ SCREEN 6 (OUR STORY) ════════ -->
+<section class="screen hidden" id="story-screen" style="opacity: 0; transform: translateY(40px);">
+  <div class="story-card">
+    <h2 class="story-title">Our Story ❤️</h2>
+    <p class="story-subtitle">From a missed moment… to something meant to be ✨</p>
+    
+    <div id="story-moments-container" class="story-moments-container">
+      <!-- Moments will be injected here -->
+    </div>
+    
+    <button id="btn-next-moment" class="submit-btn" style="width: auto; margin-top: 0;">Next Moment ✨</button>
+    
+    <button id="btn-continue-journey" class="submit-btn hidden" style="width: auto; max-width: none; background: linear-gradient(135deg, #ff4081, #c2185b);">Continue our journey ❤️</button>
   </div>
 </section>
 
@@ -1306,9 +1426,103 @@ function catchHeart(heart) {
     gameIntro.style.display = 'none';
     
     winMessage.classList.remove('hidden');
+    document.getElementById('btn-show-story').style.display = 'inline-block';
     startConfetti(); // Celebration confetti dump!
   }
 }
+
+// ─── Our Story Logic ────────────────────────────────────────────────────────
+const storyMoments = [
+  { text: "We first met on a train… I was traveling to Delhi with my friends, and you were there with yours." },
+  { text: "But funny thing is… I never really noticed you then." },
+  { text: "I actually had a small crush on your friend 😅 and that’s how everything randomly started…" },
+  { text: "We began chatting on Instagram, and you followed me too…" },
+  { text: "But slowly… I stopped texting your friend, and somehow… everything just faded away." },
+  { text: "No connection… no contact… just a memory that paused." },
+  { text: "And then… after one year… I sent a message… by mistake.", highlight: true },
+  { text: "I thought I was texting another friend who had the same name as you…" },
+  { text: "But you replied… with a question, and that’s when I realized 😄" },
+  { text: "I told you it was a mistake… but we didn’t stop talking." },
+  { text: "We kept chatting… and this time, something felt different." },
+  { text: "Same vibes… same love for books, movies, and series…" },
+  { text: "And then one day… I told you how I feel ❤️" },
+  { text: "And you said YES…" }
+];
+
+let currentMomentIndex = 0;
+const storyContainer = document.getElementById('story-moments-container');
+const btnNextMoment = document.getElementById('btn-next-moment');
+const btnContinueJourney = document.getElementById('btn-continue-journey');
+
+document.getElementById('btn-show-story').addEventListener('click', () => {
+  const s5 = document.getElementById('screen5');
+  const storyScreen = document.getElementById('story-screen');
+  
+  s5.style.opacity = '0';
+  s5.style.transform = 'scale(0.9)';
+  setTimeout(() => {
+    s5.classList.add('hidden');
+    storyScreen.classList.remove('hidden');
+    requestAnimationFrame(() => {
+      storyScreen.style.opacity = '1';
+      storyScreen.style.transform = 'translateY(0)';
+      storyScreen.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+      // Show first moment automatically
+      showNextStoryMoment();
+    });
+  }, 500);
+});
+
+function showNextStoryMoment() {
+  if (currentMomentIndex >= storyMoments.length) {
+    // End of story
+    btnNextMoment.classList.add('hidden');
+    
+    // Add the final ending line (bold and emotional)
+    const endingDiv = document.createElement('div');
+    endingDiv.className = 'story-moment show ending';
+    endingDiv.innerHTML = "A wrong message… but the most right thing that ever happened to me ❤️";
+    storyContainer.appendChild(endingDiv);
+    
+    setTimeout(() => {
+      btnContinueJourney.classList.remove('hidden');
+      btnContinueJourney.style.animation = 'popIn 0.6s cubic-bezier(0.34,1.56,0.64,1) both';
+    }, 800);
+    
+    return;
+  }
+
+  const moment = storyMoments[currentMomentIndex];
+  const momentDiv = document.createElement('div');
+  momentDiv.className = 'story-moment';
+  if (moment.highlight) {
+    momentDiv.classList.add('highlight');
+    momentDiv.innerHTML = `<span class="highlight-text">${moment.text}</span>`;
+  } else {
+    momentDiv.textContent = moment.text;
+  }
+  
+  storyContainer.appendChild(momentDiv);
+  
+  // Trigger animation
+  requestAnimationFrame(() => {
+    setTimeout(() => {
+      momentDiv.classList.add('show');
+      // Scroll to bottom
+      momentDiv.scrollIntoView({ behavior: 'smooth', block: 'end' });
+    }, 50);
+  });
+
+  currentMomentIndex++;
+}
+
+btnNextMoment.addEventListener('click', showNextStoryMoment);
+
+btnContinueJourney.addEventListener('click', () => {
+  // Final celebration
+  startConfetti();
+  alert("Our journey continues forever... I love you! ❤️");
+});
 </script>
 </body>
 </html>
