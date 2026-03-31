@@ -881,64 +881,64 @@
         </div>
       </div><!-- /candles-row -->
 
-      <!-- Cake SVG -->
-      <svg class="cake-svg" viewBox="0 0 220 200" xmlns="http://www.w3.org/2000/svg">
+      <!-- Premium Cake SVG -->
+      <svg class="cake-svg" viewBox="0 0 220 220" xmlns="http://www.w3.org/2000/svg">
+        <!-- plate/base shadow -->
+        <ellipse cx="110" cy="205" rx="100" ry="12" fill="rgba(0,0,0,0.1)"/>
         <!-- plate -->
-        <ellipse cx="110" cy="192" rx="104" ry="10" fill="#f48fb1" opacity="0.4"/>
+        <ellipse cx="110" cy="200" rx="105" ry="14" fill="#fff" stroke="#fce4ec" stroke-width="2"/>
+        <ellipse cx="110" cy="198" rx="98" ry="10" fill="#fff" opacity="0.8"/>
 
         <!-- bottom tier -->
-        <rect x="10" y="130" width="200" height="60" rx="10" fill="url(#b1)"/>
-        <!-- bottom tier top ellipse -->
-        <ellipse cx="110" cy="130" rx="100" ry="12" fill="#f48fb1"/>
-        <!-- frosting drips bottom -->
-        <path d="M25 130 Q35 150 45 130 Q55 150 65 130 Q75 150 85 130 Q95 150 105 130 Q115 150 125 130 Q135 150 145 130 Q155 150 165 130 Q175 150 185 130 Q195 150 200 130" stroke="none" fill="#fff" opacity="0.7"/>
+        <path d="M20,140 Q20,130 30,130 L190,130 Q200,130 200,140 L200,190 Q200,200 190,200 L30,200 Q20,200 20,190 Z" fill="url(#grad-bottom)"/>
+        <ellipse cx="110" cy="130" rx="90" ry="12" fill="#f8bbd0"/>
+        
+        <!-- bottom frosting drips -->
+        <path d="M20,135 Q30,165 45,135 Q55,160 65,135 Q75,170 85,135 Q100,165 110,135 Q125,170 135,135 Q145,155 155,135 Q170,170 185,135 Q195,155 200,135" fill="#fff" opacity="0.9"/>
 
         <!-- middle tier -->
-        <rect x="35" y="80" width="150" height="55" rx="8" fill="url(#b2)"/>
-        <ellipse cx="110" cy="80" rx="75" ry="10" fill="#f06292"/>
-        <!-- frosting drips mid -->
-        <path d="M48 80 Q58 98 68 80 Q78 98 88 80 Q98 98 108 80 Q118 98 128 80 Q138 98 148 80 Q158 98 168 80 Q172 98 176 80" stroke="none" fill="#fff" opacity="0.75"/>
+        <path d="M45,85 Q45,75 55,75 L165,75 Q175,75 175,85 L175,130 Q175,140 165,140 L55,140 Q45,140 45,130 Z" fill="url(#grad-mid)"/>
+        <ellipse cx="110" cy="75" rx="65" ry="10" fill="#f48fb1"/>
+        
+        <!-- mid frosting drips -->
+        <path d="M45,80 Q55,110 65,80 Q75,105 85,80 Q95,115 105,80 Q120,110 135,80 Q150,110 165,80 Q172,100 175,80" fill="#fff" opacity="0.9"/>
 
         <!-- top tier -->
-        <rect x="65" y="44" width="90" height="40" rx="8" fill="url(#b3)"/>
-        <ellipse cx="110" cy="44" rx="45" ry="7" fill="#ec407a"/>
-        <!-- frosting drips top -->
-        <path d="M72 44 Q80 56 88 44 Q96 56 104 44 Q112 56 120 44 Q128 56 136 44 Q142 56 148 44" stroke="none" fill="#fff" opacity="0.8"/>
+        <path d="M75,45 Q75,35 85,35 L135,35 Q145,35 145,45 L145,75 Q145,85 135,85 L85,85 Q75,85 75,75 Z" fill="url(#grad-top)"/>
+        <ellipse cx="110" cy="35" rx="35" ry="7" fill="#f06292"/>
+        
+        <!-- top frosting drips -->
+        <path d="M75,40 Q85,60 95,40 Q105,65 115,40 Q125,60 135,40 Q142,55 145,40" fill="#fff" opacity="0.96"/>
 
-        <!-- decorations -->
-        <circle cx="55"  cy="160" r="5" fill="#fff" opacity="0.85"/>
-        <circle cx="85"  cy="163" r="4" fill="#ffe082"/>
-        <circle cx="115" cy="160" r="5" fill="#fff" opacity="0.85"/>
-        <circle cx="145" cy="163" r="4" fill="#ffe082"/>
-        <circle cx="170" cy="160" r="4" fill="#fff" opacity="0.8"/>
+        <!-- decorative pearls -->
+        <circle cx="55" cy="170" r="4" fill="#fff"><animate attributeName="opacity" values="0.7;1;0.7" dur="2s" repeatCount="indefinite" /></circle>
+        <circle cx="100" cy="175" r="4" fill="#ffe082"><animate attributeName="opacity" values="0.7;1;0.7" dur="2.5s" repeatCount="indefinite" /></circle>
+        <circle cx="145" cy="170" r="4" fill="#fff"><animate attributeName="opacity" values="0.7;1;0.7" dur="2.2s" repeatCount="indefinite" /></circle>
+        <circle cx="175" cy="175" r="4" fill="#ffe082"><animate attributeName="opacity" values="0.7;1;0.7" dur="2.8s" repeatCount="indefinite" /></circle>
+        
+        <circle cx="70" cy="110" r="3" fill="#fff" opacity="0.8"/>
+        <circle cx="115" cy="115" r="3" fill="#ffe082" opacity="0.8"/>
+        <circle cx="155" cy="110" r="3" fill="#fff" opacity="0.8"/>
 
-        <circle cx="60"  cy="108" r="4" fill="#fff" opacity="0.8"/>
-        <circle cx="90"  cy="110" r="3" fill="#ffe082"/>
-        <circle cx="120" cy="108" r="4" fill="#fff" opacity="0.8"/>
-        <circle cx="150" cy="110" r="3" fill="#ffe082"/>
-
-        <!-- hearts on tiers -->
-        <text x="98" y="100" font-size="14" fill="#fff" opacity="0.9">♥</text>
-        <text x="100" y="67" font-size="11" fill="#fff" opacity="0.9">♥</text>
-
-        <!-- star sprinkles -->
-        <text x="38"  y="158" font-size="9" fill="#ffe082">★</text>
-        <text x="178" y="155" font-size="9" fill="#ffe082">★</text>
-        <text x="42"  y="108" font-size="8" fill="#ffe082">✦</text>
-        <text x="170" y="110" font-size="8" fill="#ffe082">✦</text>
+        <!-- gold leaf accents -->
+        <path d="M180,150 L185,145 L190,150 L185,155 Z" fill="#ffd700" opacity="0.6"/>
+        <path d="M30,160 L35,155 L40,160 L35,165 Z" fill="#ffd700" opacity="0.6"/>
 
         <defs>
-          <linearGradient id="b1" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%"   stop-color="#f8bbd0"/>
-            <stop offset="100%" stop-color="#e91e63"/>
+          <linearGradient id="grad-bottom" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stop-color="#f8bbd0"/>
+            <stop offset="50%" stop-color="#f06292"/>
+            <stop offset="100%" stop-color="#f8bbd0"/>
           </linearGradient>
-          <linearGradient id="b2" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%"   stop-color="#f48fb1"/>
-            <stop offset="100%" stop-color="#c2185b"/>
+          <linearGradient id="grad-mid" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stop-color="#f48fb1"/>
+            <stop offset="50%" stop-color="#ec407a"/>
+            <stop offset="100%" stop-color="#f48fb1"/>
           </linearGradient>
-          <linearGradient id="b3" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%"   stop-color="#ec407a"/>
-            <stop offset="100%" stop-color="#880e4f"/>
+          <linearGradient id="grad-top" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stop-color="#f06292"/>
+            <stop offset="50%" stop-color="#d81b60"/>
+            <stop offset="100%" stop-color="#f06292"/>
           </linearGradient>
         </defs>
       </svg>
@@ -1074,16 +1074,31 @@ let isRunaway = false;
 function randomPos() {
   const bw = btnLike.offsetWidth  || 140;
   const bh = btnLike.offsetHeight || 50;
-  const x = Math.random() * (window.innerWidth  - bw - 20) + 10;
-  const y = Math.random() * (window.innerHeight - bh - 20) + 10;
-  return { x, y };
+
+  // Get current position or default to center if not set
+  const currentLeft = parseFloat(btnLike.style.left) || (window.innerWidth / 2 - bw / 2);
+  const currentTop  = parseFloat(btnLike.style.top)  || (window.innerHeight / 2 - bh / 2);
+
+  // Nudge away slightly (60-100px) in a random-ish direction
+  const angle = Math.random() * Math.PI * 2;
+  const dist  = 70 + Math.random() * 50;
+  
+  let newX = currentLeft + Math.cos(angle) * dist;
+  let newY = currentTop  + Math.sin(angle) * dist;
+
+  // Strict boundary checks with 15px padding
+  const pad = 15;
+  newX = Math.max(pad, Math.min(newX, window.innerWidth - bw - pad));
+  newY = Math.max(pad, Math.min(newY, window.innerHeight - bh - pad));
+
+  return { x: newX, y: newY };
 }
 
 function placeBtn() {
   const { x, y } = randomPos();
   btnLike.style.left = x + 'px';
   btnLike.style.top  = y + 'px';
-  btnLike.style.transition = 'left 0.25s ease, top 0.25s ease';
+  btnLike.style.transition = 'left 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), top 0.3s cubic-bezier(0.34, 1.56, 0.64, 1)';
 }
 
 function activateRunaway() {
